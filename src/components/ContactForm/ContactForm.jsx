@@ -1,8 +1,11 @@
 import { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+import { getContactsItems } from 'redux/contactsSlice';
+import { addContact } from 'redux/contactsSlice';
 
 import {
   StyledLabel,
@@ -38,7 +41,7 @@ const schema = yup.object().shape({
     }),
 });
 
-function ContactForm({ onSubmit }) {
+function ContactForm() {
   const {
     register,
     handleSubmit,
@@ -60,8 +63,24 @@ function ContactForm({ onSubmit }) {
     }
   }, [formState.isSubmitSuccessful, reset]);
 
+  const dispatch = useDispatch();
+  const contactsItems = useSelector(getContactsItems);
+
+  const addNewContact = data => {
+    const normalizedName = data.name.toLowerCase();
+
+    if (
+      contactsItems.find(item => item.name.toLowerCase() === normalizedName)
+    ) {
+      return toast.info(`${data.name} is already in contacts!`);
+    }
+
+    dispatch(addContact(data));
+    toast.info('New contact has been added to your phonebook');
+  };
+
   return (
-    <StyledForm onSubmit={handleSubmit(onSubmit)}>
+    <StyledForm onSubmit={handleSubmit(data => addNewContact(data))}>
       <StyledLabel>
         Name
         <StyledInput
@@ -88,9 +107,5 @@ function ContactForm({ onSubmit }) {
     </StyledForm>
   );
 }
-
-ContactForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
 
 export default ContactForm;
