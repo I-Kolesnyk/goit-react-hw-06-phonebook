@@ -14,13 +14,13 @@ export const SectionsContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 95vw;
-  height: 100vw;
+  flex-grow:1;  
 `;
 
 export const Section = styled.section`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center;  
   gap: 30px;
   width: 600px;
   height: 570px;
