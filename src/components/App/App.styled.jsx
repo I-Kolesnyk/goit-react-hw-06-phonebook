@@ -13,7 +13,7 @@ export const SectionsContainer = styled.div`
   gap: 40px;
   justify-content: center;
   align-items: center;
-  width: 95vw;
+  
   flex-grow:1;  
 `;
 
