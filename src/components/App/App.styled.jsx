@@ -14,6 +14,7 @@ export const SectionsContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 95vw;
+  height: 100vw;
 `;
 
 export const Section = styled.section`
