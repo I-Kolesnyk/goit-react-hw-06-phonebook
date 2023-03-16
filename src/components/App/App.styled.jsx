@@ -5,6 +5,7 @@ export const Container = styled.div`
   background-color: ${({ theme }) => {
     return theme.colors.backgroundColor;
   }};
+  flex-grow:1;
 `;
 
 export const SectionsContainer = styled.div`
@@ -12,9 +13,8 @@ export const SectionsContainer = styled.div`
   flex-wrap: wrap;
   gap: 40px;
   justify-content: center;
-  align-items: center;
-  
-  flex-grow:1;  
+  align-items: center;  
+    
 `;
 
 export const Section = styled.section`
