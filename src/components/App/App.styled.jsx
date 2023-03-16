@@ -10,8 +10,10 @@ export const Container = styled.div`
 export const SectionsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  justify-content: space-around;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+  width: 95vw;
 `;
 
 export const Section = styled.section`
@@ -31,10 +33,6 @@ export const Section = styled.section`
   box-shadow: ${({ theme }) => {
     return theme.boxShadow;
   }};
-
-  &.contacts {
-    overflow-y: auto;
-  }
 `;
 
 export const Title = styled.h1`
