@@ -42,6 +42,8 @@ const schema = yup.object().shape({
 });
 
 function ContactForm() {
+  const dispatch = useDispatch();
+  const contactsItems = useSelector(getContactsItems);
   const {
     register,
     handleSubmit,
@@ -63,9 +65,6 @@ function ContactForm() {
     }
   }, [formState.isSubmitSuccessful, reset]);
 
-  const dispatch = useDispatch();
-  const contactsItems = useSelector(getContactsItems);
-
   const addNewContact = data => {
     const normalizedName = data.name.toLowerCase();
 
@@ -80,7 +79,7 @@ function ContactForm() {
   };
 
   return (
-    <StyledForm onSubmit={handleSubmit(data => addNewContact(data))}>
+    <StyledForm onSubmit={handleSubmit(addNewContact)}>
       <StyledLabel>
         Name
         <StyledInput
